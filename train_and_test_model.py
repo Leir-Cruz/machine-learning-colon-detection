@@ -1,16 +1,18 @@
 import torch
+import copy
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
 
-epochs = 10
 criterion = torch.nn.CrossEntropyLoss()
 
-def train_model(model, dataloader_train, dataloader_validation):
+def train_model(model, dataloader_train, dataloader_validation, epochs = 10, learning_rate=1e-4):
     #device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     device = "cuda"
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     train_losses = []
     val_losses = []
+    best_loss = float("inf")
+    best_model = None
 
     for epoch in range(epochs):
         model.train()  #ativa modo de treinamento
@@ -39,6 +41,11 @@ def train_model(model, dataloader_train, dataloader_validation):
                 outputs = model(images)
                 loss = criterion(outputs, labels)
                 total_loss_validation += loss.item() * images.size()[0]
+            
+            if(best_loss > total_loss_validation):
+                best_loss = total_loss_validation
+                torch.save(model.state_dict(), f"{model.__name__}.pt")
+                best_model = copy.deepcopy(model)
 
         avg_train_loss = total_loss / len(dataloader_train.dataset)
         avg_val_loss = total_loss_validation / len(dataloader_validation.dataset)
@@ -48,7 +55,7 @@ def train_model(model, dataloader_train, dataloader_validation):
 
         print(f"Epoch {epoch+1}: Train Loss = {avg_train_loss:.4f} | Val Loss = {avg_val_loss:.4f}")
 
-    return train_losses, val_losses
+    return train_losses, val_losses, best_model
 
 
 
