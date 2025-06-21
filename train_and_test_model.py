@@ -44,7 +44,7 @@ def train_model(model, dataloader_train, dataloader_validation, epochs = 10, lea
             
             if(best_loss > total_loss_validation):
                 best_loss = total_loss_validation
-                torch.save(model.state_dict(), f"{model.__name__}.pt")
+                torch.save(model.state_dict(), f"{model.__class__.__name__}.pt")
                 best_model = copy.deepcopy(model)
 
         avg_train_loss = total_loss / len(dataloader_train.dataset)
