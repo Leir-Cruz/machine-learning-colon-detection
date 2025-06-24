@@ -5,16 +5,16 @@ import pathlib
 from sklearn.model_selection import train_test_split 
 
 
-def generate_csv():
-    path_to_dataset = pathlib.Path("/content/lung_colon_image_set/colon_image_sets")
+def generate_csv(path):
+    path_to_dataset = pathlib.Path(path)
     LC25000Formatter(input_path = path_to_dataset, output_csv = "nb_lc25000.csv").run()
 
 
-def get_formatted_datasets():
+def get_formatted_datasets(path="/content/lung_colon_image_set/colon_image_sets", csv_path="/content/nb_lc25000.csv"):
 
-    generate_csv()
+    generate_csv(path)
 
-    dataframe = pd.read_csv("/content/nb_lc25000.csv")
+    dataframe = pd.read_csv(csv_path)
     x_train, x_test, y_train, y_test = train_test_split(
         dataframe["path"],
         dataframe["label"],
