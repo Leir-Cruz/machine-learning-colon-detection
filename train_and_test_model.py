@@ -5,10 +5,10 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 criterion = torch.nn.CrossEntropyLoss()
 
-def train_model(model, dataloader_train, dataloader_validation, epochs = 10, learning_rate=1e-4):
+def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10):
     #device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    #optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     device = "cuda"
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     train_losses = []
     val_losses = []
     best_loss = float("inf")
