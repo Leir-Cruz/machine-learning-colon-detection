@@ -3,7 +3,7 @@ from lc25000_dataset import LC25000Dataset
 from torch.utils.data import  DataLoader
 
 
-def get_dataloaders(df_train, df_validation, df_test):
+def get_dataloaders(df_train, df_validation, df_test, batch_size = 1):
 
     dataset_train = LC25000Dataset(
         df_train,
@@ -23,9 +23,9 @@ def get_dataloaders(df_train, df_validation, df_test):
         target_column="label",
     )
 
-    dataloader_train = DataLoader(dataset_train)
-    dataloader_validation = DataLoader(dataset_validation)
-    dataloader_test = DataLoader(dataset_test)
+    dataloader_train = DataLoader(dataset_train, batch_size= batch_size, shuffle= True)
+    dataloader_validation = DataLoader(dataset_validation, batch_size= batch_size, shuffle= False)
+    dataloader_test = DataLoader(dataset_test, batch_size= batch_size, shuffle= False)
 
 
     return dataloader_train, dataloader_validation, dataloader_test

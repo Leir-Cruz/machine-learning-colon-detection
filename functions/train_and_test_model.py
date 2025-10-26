@@ -2,20 +2,17 @@ import torch
 import copy
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
-
 criterion = torch.nn.CrossEntropyLoss()
 
-def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10):
-    #device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    #optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10, patience = 5):
     device = "cuda"
     train_losses = []
     val_losses = []
     best_loss = float("inf")
     best_model = None
-
+    epochs_no_improve = 0
     for epoch in range(epochs):
-        model.train()  #ativa modo de treinamento
+        model.train()
         total_loss = 0
         total_loss_validation = 0
 
@@ -32,7 +29,7 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
             total_loss += loss.item() * images.size()[0]
 
         with torch.no_grad():
-            model.eval() #desativa modo de treinamento
+            model.eval() 
 
             for images, labels in dataloader_validation:
                 images = images.to(device)
@@ -42,10 +39,6 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
                 loss = criterion(outputs, labels)
                 total_loss_validation += loss.item() * images.size()[0]
             
-            if(best_loss > total_loss_validation):
-                best_loss = total_loss_validation
-                torch.save(model.state_dict(), f"{model.__class__.__name__}.pt")
-                best_model = copy.deepcopy(model)
 
         avg_train_loss = total_loss / len(dataloader_train.dataset)
         avg_val_loss = total_loss_validation / len(dataloader_validation.dataset)
@@ -53,7 +46,19 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
         train_losses.append(avg_train_loss)
         val_losses.append(avg_val_loss)
 
-        print(f"Epoch {epoch+1}: Train Loss = {avg_train_loss:.4f} | Val Loss = {avg_val_loss:.4f}")
+        if avg_val_loss < best_loss:
+            best_loss = avg_val_loss
+            best_model = copy.deepcopy(model)
+            torch.save(model.state_dict(), f"{model.__class__.__name__}.pt")
+            epochs_no_improve = 0
+        else:
+            epochs_no_improve += 1
+
+        print(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Sem melhora: {epochs_no_improve}/{patience}")
+
+        if epochs_no_improve >= patience:
+            print(f"\nEarly stopping ativado! Melhor Val Loss: {best_loss:.4f}")
+            break
 
     return train_losses, val_losses, best_model
 
