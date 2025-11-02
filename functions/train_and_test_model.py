@@ -4,7 +4,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 criterion = torch.nn.CrossEntropyLoss()
 
-def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10, patience = 5):
+def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10, patience = 0):
     device = "cuda"
     train_losses = []
     val_losses = []
@@ -54,9 +54,8 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
         else:
             epochs_no_improve += 1
 
-        print(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Sem melhora: {epochs_no_improve}/{patience}")
-
-        if epochs_no_improve >= patience:
+        print(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
+        if patience > 0 and epochs_no_improve >= patience:
             print(f"\nEarly stopping ativado! Melhor Val Loss: {best_loss:.4f}")
             break
 
