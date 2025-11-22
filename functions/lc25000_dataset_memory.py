@@ -12,22 +12,23 @@ class LC25000DatasetMemory(Dataset):
         self.transforms = transforms
         self.target_column = target_column
 
-        # Carregar todas as imagens para memória (em forma de tensores)
         self.images = []
         self.labels = []
 
         for idx, row in dataframe.iterrows():
-            # Carregar imagem da URL ou caminho
-            image_path = row['image_path']  # Supondo que o caminho da imagem está em 'image_path'
-            image = Image.open(image_path).convert('RGB')
-            # Converter para tensor
-            image_tensor = transforms.ToTensor()(image)
-            
-            # Armazenar na lista
-            self.images.append(image_tensor)
-            self.labels.append(row[target_column])  # Supondo que a label está na coluna 'label'
+            image_path = row["path"]
+            image = Image.open(image_path).convert("RGB")
+            image_np = np.array(image)
 
-        # Converter as listas para tensores de uma vez (isso carrega tudo em memória)
+            if self.transforms:
+                transformed = self.transforms(image=image_np)
+                image_tensor = transformed["image"]
+            else:
+                image_tensor = torch.from_numpy(image_np).permute(2, 0, 1)  # fallback
+
+            self.images.append(image_tensor)
+            self.labels.append(row[target_column])
+
         self.images = torch.stack(self.images)
         self.labels = torch.tensor(self.labels)
 
@@ -35,10 +36,4 @@ class LC25000DatasetMemory(Dataset):
         return len(self.dataframe)
 
     def __getitem__(self, idx):
-        image = self.images[idx]
-        label = self.labels[idx]
-
-        if self.transforms:
-            image = self.transforms(image)
-
-        return image, label
+        return self.images[idx], self.labels[idx]
