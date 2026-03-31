@@ -2,8 +2,6 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 import cv2
 
-
-
 class LC25000DatasetConfig:
     VAL_SIZE = 0.2
     SEED = 0x40
