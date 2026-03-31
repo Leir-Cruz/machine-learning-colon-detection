@@ -14,6 +14,7 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 - *Machine Learning-Based Diagnosis and Detection of Liver Cancer: An Approach Enhancement*- Yogesg Kumar, Perneet Kaur, Jyoti Rani
 - *Resource Efficient Deep Learning Architectures for Histopathology-Based Colorectal Cancer Detection* - Md. Bipul Hossain1  Mohamed Shaban
 - *Comparative Analysis of ResNet Architecture Enhanced with Self-Attention for Colorectal Cancer Detection* - Yonathan Fanuel Mulyadi Fitri Utaminingrum
+- *A Hybrid Quantum-Classical Model for Breast Cancer Diagnosis with Quanvolutions* - Yasmin Rodrigues Sobrinho, Enzo Gabriel Batista Soares, Joao Renato Ribeiro Manesco, Jawaher Al-Tuweity,Rafael Gonçalves Pires, Joao Paulo Papa
 
 ## Redes neurais usadas
 - AlexNet
@@ -22,7 +23,10 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 - ResNet101
 - ResNet 152
 - DenseNet-121
+- QuanvolutionModel
 
-### Por que criar esse repositório?
-Esse repositório permite maior modularização do código e replicação dos resultados
+
+## Explicando versões Notebooks
+- v1: versões que rodam diretamento no google colab, importando dados do kaggle dataset e funções em núvem
+- v2: versões que rodam tanto locamente quanto no google colab, importando os dados via api kaggle, sem necessidade de chave de acesso e importação de funções
 
