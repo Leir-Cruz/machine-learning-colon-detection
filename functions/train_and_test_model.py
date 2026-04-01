@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 criterion = torch.nn.CrossEntropyLoss()
 
 def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10, patience = 0):
+    model = model.to("cuda")
     device = "cuda"
     train_losses = []
     val_losses = []
@@ -64,6 +65,7 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
 
 
 def test_model(model, device, dataloader_test):
+    model = model.to(device)
     model.eval()  # Modo de avaliação
     all_preds = []
     all_labels = []
