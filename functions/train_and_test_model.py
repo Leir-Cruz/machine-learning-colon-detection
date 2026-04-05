@@ -10,7 +10,7 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
     train_losses = []
     val_losses = []
     best_loss = float("inf")
-    best_model = None
+    best_model_state = None
     epochs_no_improve = 0
     for epoch in range(epochs):
         model.train()
@@ -49,7 +49,7 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
 
         if avg_val_loss < best_loss:
             best_loss = avg_val_loss
-            best_model = copy.deepcopy(model)
+            best_model_state = copy.deepcopy(model.state_dict())
             torch.save(model.state_dict(), f"{model.__class__.__name__}.pt")
             epochs_no_improve = 0
         else:
@@ -59,6 +59,9 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
         if patience > 0 and epochs_no_improve >= patience:
             print(f"\nEarly stopping ativado! Melhor Val Loss: {best_loss:.4f}")
             break
+    best_model = copy.deepcopy(model)
+    best_model.load_state_dict(best_model_state)
+    best_model.to(device)
 
     return train_losses, val_losses, best_model
 
