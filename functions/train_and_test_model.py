@@ -4,7 +4,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 criterion = torch.nn.CrossEntropyLoss()
 
-def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10, patience = 0):
+def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10, patience = 0, scheduler = None):
     model = model.to("cuda")
     device = "cuda"
     train_losses = []
@@ -47,6 +47,9 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
         train_losses.append(avg_train_loss)
         val_losses.append(avg_val_loss)
 
+        if scheduler is not None:
+            scheduler.step()
+
         if avg_val_loss < best_loss:
             best_loss = avg_val_loss
             best_model_state = copy.deepcopy(model.state_dict())
@@ -59,11 +62,9 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
         if patience > 0 and epochs_no_improve >= patience:
             print(f"\nEarly stopping ativado! Melhor Val Loss: {best_loss:.4f}")
             break
-    best_model = copy.deepcopy(model)
-    best_model.load_state_dict(best_model_state)
-    best_model.to(device)
-
-    return train_losses, val_losses, best_model
+    
+    model.load_state_dict(best_model_state)
+    return train_losses, val_losses, model
 
 
 
