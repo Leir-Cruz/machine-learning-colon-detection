@@ -27,6 +27,7 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 
 
 ## Explicando versões Notebooks
-- v1: versões que rodam diretamento no google colab, importando dados do kaggle dataset e funções em núvem
-- v2: versões que rodam tanto locamente quanto no google colab, importando os dados via api kaggle, sem necessidade de chave de acesso e importação de funções
+- v1: versões que rodam diretamento no google colab, importando dados do kaggle dataset e funções em núvem.
+- v2: versões que rodam tanto locamente quanto no google colab, importando os dados via api kaggle, sem necessidade de chave de acesso e importação de funções.
+- v3: atualização da v2, rodando com scheduler para cnn clássicas e earlyStopping. Para modelos quanticos, tentativas de rodar com outros tamanho de imagem e uso de todo dataset.
 
