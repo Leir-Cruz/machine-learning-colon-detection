@@ -31,3 +31,13 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 - v2: versões que rodam tanto locamente quanto no google colab, importando os dados via api kaggle, sem necessidade de chave de acesso e importação de funções.
 - v3: atualização da v2, rodando com scheduler para cnn clássicas e earlyStopping. Para modelos quanticos, tentativas de rodar com outros tamanho de imagem e uso de todo dataset.
 
+## Hiperparâmetros usados
+### V1, V2, V3
+- AlexNet: learningRate: 1e-4; optimizer: Adam
+- Vgg16: learningRate: 1e-2; optimizer: SGD momentum 0.9 e weight_decay: 5*1e-4
+- Resnet18: learningRate: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
+- ResNet34: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
+- ResNet50: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
+- ResNet101: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
+- ResNet152: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
+
