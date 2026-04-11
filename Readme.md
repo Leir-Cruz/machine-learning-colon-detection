@@ -30,6 +30,14 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 - v1: versões que rodam diretamento no google colab, importando dados do kaggle dataset e funções em núvem.
 - v2: versões que rodam tanto locamente quanto no google colab, importando os dados via api kaggle, sem necessidade de chave de acesso e importação de funções.
 - v3: atualização da v2, rodando com scheduler para cnn clássicas e earlyStopping. Para modelos quanticos, tentativas de rodar com outros tamanho de imagem e uso de todo dataset.
+- v4: AlexNet e VGG16 com adamMax
+- v5: AlexNet e VGG16 com adamMax e com scheduler
+- v6: AlexNet com Adam e VGG16 com SGB
+- v7: AlexNet com Adam e VGG16 com SGB com scheduler
+- v8: ResNet (18, 34, 50, 101, 152) com SGB
+- v9: ResNet (18, 34, 50, 101, 152) com SGB com scheduler
+- v10: ResNet (18, 34, 50, 101, 152) com Adam
+- v11: ResNet (18, 34, 50, 101, 152) com Adam com scheduler
 
 ## Hiperparâmetros usados
 ### V1, V2, V3
