@@ -28,24 +28,31 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 
 ## Explicando versões Notebooks
 - v1: versões que rodam diretamento no google colab, importando dados do kaggle dataset e funções em núvem.
-- v2: versões que rodam tanto locamente quanto no google colab, importando os dados via api kaggle, sem necessidade de chave de acesso e importação de funções.
+- v2: versões que rodam tanto locamente quanto no google colab, importando os dados via api kaggle, sem necessidade de chave de acesso e importação de funções. AlexNet com Adam, VGG16 com SGD, ResNets com AdamMax.
 - v3: atualização da v2, rodando com scheduler para cnn clássicas e earlyStopping. Para modelos quanticos, tentativas de rodar com outros tamanho de imagem e uso de todo dataset.
 - v4: AlexNet e VGG16 com adamMax
 - v5: AlexNet e VGG16 com adamMax e com scheduler
-- v6: AlexNet com Adam e VGG16 com SGB
-- v7: AlexNet com Adam e VGG16 com SGB com scheduler
-- v8: ResNet (18, 34, 50, 101, 152) com SGB
-- v9: ResNet (18, 34, 50, 101, 152) com SGB com scheduler
+- v6: AlexNet com SGD e VGG16 com Adam
+- v7: AlexNet com SGD e VGG16 com Adam com scheduler
+- v8: ResNet (18, 34, 50, 101, 152) com SGD
+- v9: ResNet (18, 34, 50, 101, 152) com SGD com scheduler
 - v10: ResNet (18, 34, 50, 101, 152) com Adam
 - v11: ResNet (18, 34, 50, 101, 152) com Adam com scheduler
 
 ## Hiperparâmetros usados
-### V1, V2, V3
-- AlexNet: learningRate: 1e-4; optimizer: Adam
-- Vgg16: learningRate: 1e-2; optimizer: SGD momentum 0.9 e weight_decay: 5*1e-4
-- Resnet18: learningRate: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
-- ResNet34: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
-- ResNet50: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
-- ResNet101: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
-- ResNet152: 1e-2; optimizer: AdamMax b1=0.9 b2=0.999 weight_decay 1e-4 eps= 1e-08
+### Adam
+- learningRate: 1e-4
+### SGD
+- learningRate: 1e-2
+- momentum 0.9
+- weight_decay: 5*1e-4
+### AdamMax
+- learningRate: 1e-2
+- b1=0.9 
+- b2=0.999 
+- weight_decay 1e-4 
+- eps= 1e-08
+### Scheduler
+- step_size=5
+- gamma=0.1
 
