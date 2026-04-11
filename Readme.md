@@ -1,6 +1,9 @@
 # Objetivo do trabalho
 Trabalho de visão computacional voltado para detecção e classificação de câncer de colo intestino através de imagens de endoscopia.
 
+## Dataset utilizado
+- *https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images*, LC25000 
+
 ## Nesse repositório
 O Repositório busca manter centralizdas todas as funções necessárias para o uso da rede neural, desde a leitura dos dados até até as funções auxíliares e os hiper-parâmentros de treinamento.
 
