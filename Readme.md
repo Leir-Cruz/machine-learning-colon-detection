@@ -19,10 +19,11 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 ## Redes neurais usadas
 - AlexNet
 - VGG16
+- ResNet18
+- ResNet34
 - ResNet50
 - ResNet101
 - ResNet 152
-- DenseNet-121
 - QuanvolutionModel
 
 
