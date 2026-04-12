@@ -42,6 +42,7 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 - v9: ResNet (18, 34, 50, 101, 152) com SGD com scheduler
 - v10: ResNet (18, 34, 50, 101, 152) com Adam
 - v11: ResNet (18, 34, 50, 101, 152) com Adam com scheduler
+- final: Versão em que modelos estão organizados seguindo os hiperparâmetros utilizados, a fim de facilitar a observação
 
 ## Hiperparâmetros usados
 ### Adam
