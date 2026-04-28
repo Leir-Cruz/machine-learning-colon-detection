@@ -31,18 +31,9 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 
 
 ## Explicando versões Notebooks
-- v1: versões que rodam diretamento no google colab, importando dados do kaggle dataset e funções em núvem.
-- v2: versões que rodam tanto locamente quanto no google colab, importando os dados via api kaggle, sem necessidade de chave de acesso e importação de funções. AlexNet com Adam, VGG16 com SGD, ResNets com AdamMax.
-- v3: atualização da v2, rodando com scheduler para cnn clássicas e earlyStopping. Para modelos quanticos, tentativas de rodar com outros tamanho de imagem e uso de todo dataset.
-- v4: AlexNet e VGG16 com adamMax
-- v5: AlexNet e VGG16 com adamMax e com scheduler
-- v6: AlexNet com SGD e VGG16 com Adam
-- v7: AlexNet com SGD e VGG16 com Adam com scheduler
-- v8: ResNet (18, 34, 50, 101, 152) com SGD
-- v9: ResNet (18, 34, 50, 101, 152) com SGD com scheduler
-- v10: ResNet (18, 34, 50, 101, 152) com Adam
-- v11: ResNet (18, 34, 50, 101, 152) com Adam com scheduler
-- final: Versão em que modelos estão organizados seguindo os hiperparâmetros utilizados, a fim de facilitar a observação
+- LC25000: rodando apenas com dataset LC25000
+- CRC5000: rodando apenas com dataset CRC5000
+- LC25000 + CRC5000: treinando com LC25000 e testando com CRC5000
 
 ## Hiperparâmetros usados
 ### Adam
@@ -61,3 +52,6 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 - step_size=5
 - gamma=0.1
 
+## Datasets
+- https://www.kaggle.com/datasets/kmader/colorectal-histology-mnist/data
+- https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images/data
