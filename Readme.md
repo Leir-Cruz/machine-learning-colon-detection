@@ -33,6 +33,7 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 ## Explicando versões Notebooks
 - LC25000: rodando apenas com dataset LC25000
 - CRC5000: rodando apenas com dataset CRC5000
+- CRC5000-binary-only: rodando apenas com data CRC 5000, no entanto filtrando para classificação binária apenas
 - LC25000 + CRC5000: treinando com LC25000 e testando com CRC5000
 
 ## Hiperparâmetros usados
