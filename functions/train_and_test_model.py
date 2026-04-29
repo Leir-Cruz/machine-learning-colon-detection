@@ -1,10 +1,11 @@
 import torch
 import copy
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
-
+import os
+from google.colab import drive
 criterion = torch.nn.CrossEntropyLoss()
 
-def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10, patience = 0, scheduler = None):
+def train_model(model, dataloader_train, dataloader_validation, optimizer, epochs = 10, patience = 0, scheduler = None, drive_path = '/content/drive/MyDrive/MachineLearning/ResultadosTCC/models'):
     model = model.to("cuda")
     device = "cuda"
     train_losses = []
@@ -64,6 +65,9 @@ def train_model(model, dataloader_train, dataloader_validation, optimizer, epoch
             break
     
     model.load_state_dict(best_model_state)
+    os.makedirs(drive_path, exist_ok=True)
+    best_path = drive_path + f"/{model.__class__.__name__}_best.pt"
+    torch.save(best_model_state, best_path)
     return train_losses, val_losses, model
 
 
