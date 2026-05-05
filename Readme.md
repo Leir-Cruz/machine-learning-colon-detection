@@ -56,3 +56,4 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 ## Datasets
 - https://www.kaggle.com/datasets/kmader/colorectal-histology-mnist/data
 - https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images/data
+- https://huggingface.co/datasets/DykeF/NCTCRCHE100K
