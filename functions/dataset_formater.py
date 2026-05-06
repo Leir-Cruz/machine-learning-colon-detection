@@ -46,6 +46,10 @@ class CRC5000Formatter:
     def process_directory(self, input_path: str):
         label_map = {
             "01_TUMOR": int(1),
+            "02_STROMA": int(0),
+            "03_COMPLEX": int(0),
+            "04_LYMPHO": int(0),
+            "05_DEBRIS": int(0),
             "06_MUCOSA": int(0),
             "07_ADIPOSE": int(0),
             "08_EMPTY": int(0),
