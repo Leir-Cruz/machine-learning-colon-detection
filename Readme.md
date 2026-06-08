@@ -1,9 +1,6 @@
 # Objetivo do trabalho
 Trabalho de visão computacional voltado para detecção e classificação de câncer de colo intestino através de imagens de endoscopia.
 
-## Dataset utilizado
-- *https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images*, LC25000 
-
 ## Nesse repositório
 O Repositório busca manter centralizdas todas as funções necessárias para o uso da rede neural, desde a leitura dos dados até até as funções auxíliares e os hiper-parâmentros de treinamento.
 
@@ -35,6 +32,7 @@ Por motivos de limitação de hardware, o projeto é rodado com o uso da ferrame
 - CRC5000: rodando apenas com dataset CRC5000
 - CRC5000-binary-only: rodando apenas com data CRC 5000, no entanto filtrando para classificação binária apenas
 - LC25000 + CRC5000: treinando com LC25000 e testando com CRC5000
+- NCTCRCHE100K: treinamento feito com NCTCRCHE100K e testado com todos os datasets
 
 ## Hiperparâmetros usados
 ### Adam
